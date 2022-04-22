@@ -1,0 +1,37 @@
+.contact-us {
+}
+.contact-us__body {
+}
+.contact-us__forms {
+}
+
+/*=============================*/
+.forms-contact-us {
+}
+.forms-contact-us__body {
+   display: flex;
+   gap: 20px;
+   width: 80vw;
+   margin: 10vw;
+}
+.forms-contact-us__cont {
+   flex: 0 1 25%;
+}
+.forms-contact-us__form {
+}
+.forms-contact-us__title {
+}
+.forms-contact-us__title_photo {
+}
+.forms-contact-us__input {
+}
+.forms-contact-us__input_photo {
+   opacity: 0;
+   cursor: pointer;
+}
+.forms-contact-us__button {
+   flex: 0 1 25%;
+}
+
+.btn {
+}

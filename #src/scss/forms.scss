@@ -1,0 +1,25 @@
+//Form =========================================================================================
+.form{
+	&_row{}
+	&_column{}
+	&_line{}
+	&_input{}
+	&_button{}
+	&_error{}
+}
+
+//Button ======================================================================================
+.btn{
+	display: inline-flex;
+	justify-content: center;
+	padding: 0px 15px;
+	text-align: center;
+	transition: all 0.3s ease 0s;
+	@media(any-hover:hover){
+		&:hover{
+
+		}
+	}
+	&._fw{}
+
+}
