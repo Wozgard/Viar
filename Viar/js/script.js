@@ -223,7 +223,7 @@ textWebp(function(support) {
 	}
 });;
 //Burger ==============================================================================
-const iconMenu = document.querySelector('.menu__icon');
+/* const iconMenu = document.querySelector('.menu__icon');
 const iconContainer = document.querySelector('.icon-menu__container')
 
 if (iconMenu) {
@@ -234,7 +234,8 @@ if (iconMenu) {
 		iconBody.classList.toggle('_active');
 		iconContainer.classList.toggle('_active')
 	});
-}
+	menuBurgerHoverHelper()
+} */
 ;
 
 const urlServer = 'http://localhost:3000';
@@ -261,6 +262,69 @@ window.onload = function () {
             });
          }
       }
+      //Burger===================================================================================================================
+      if (targetElement.closest('.menu__icon')) {
+         const iconMenu = document.querySelector('.menu__icon');
+         const iconContainer = document.querySelector('.icon-menu__container')
+         const iconBody = document.querySelector('.menu');
+
+         document.body.classList.toggle('_lock');
+         iconMenu.classList.toggle('_active');
+         iconBody.classList.toggle('_active');
+         iconContainer.classList.toggle('_active')
+
+         menuBurgerHoverHelper()
+      }
+      if (targetElement.closest('.lang-menu__visible') && !document.querySelector('.lang-menu__visible').classList.contains('_hold')) {
+         document.querySelector('.lang-menu__visible').classList.add('_hold')
+         document.querySelectorAll('.lang-menu__option').forEach(item => {
+            if (item.classList.contains('_active')) {
+               item.classList.remove('_active')
+            }
+            item.style.transform = `translate(0, 0)`;
+         });
+      } else if (targetElement.closest('.lang-menu__option') && document.querySelector('.lang-menu__visible').classList.contains('_hold')) {
+         const optionsValue = targetElement.getAttribute('data-value');
+         const langSelect = document.querySelector('.lang-menu__select');
+         langSelect.setAttribute('value', optionsValue);
+
+         //Здесь мы получаем массив из "options" после чего нам нужно определить не является ли элемент первым, 
+         //для этого я использовал findIndex(), чтобы первый элемент не получал transform и не улетал вверх
+         const options = document.querySelectorAll('.lang-menu__option');
+         const optionsIndex = Array.from(options).findIndex((el, i, ar) => el == targetElement ? i : null);
+         const optionsCount = options.length;
+         if (optionsIndex != -1) { targetElement.style.transform = `translate(0, -${100 * (optionsCount - 1)}%)`; }
+
+         targetElement.classList.add('_active');
+         document.querySelector('.lang-menu__visible').classList.remove('_hold');
+      }
+
+      /* if (targetElement.classList.contains('menu__arrow') && document.querySelectorAll('.menu__button._active').length >= 0) {
+         const menu = document.querySelector('.menu');
+         const countActive = document.querySelectorAll('.menu__button._active').length;
+         const countButtons = document.querySelectorAll('.menu__button').length;
+         if (countButtons > countActive) {
+            const differenceCount = countButtons - countActive;
+            //const hideActive = document.querySelector('.menu').getAttribute('class').replace(/[^0-9]/g, '');
+            const countHideActive = countActive + 1;
+            menu.classList.remove(`_scroll-plus${countHideActive}`);
+         }
+         if (countActive != 1) {
+            menu.classList.add(`_scroll-plus${countActive}`);
+            const scrollPlus = document.querySelector(`._scroll-plus${countActive}`);
+            const countActivePecent = 100 + 15 * countActive;
+            menu.style.cssText =
+               `
+            height: ${countActivePecent}%;
+            `;
+         } else {
+            menu.style.cssText =
+               `
+            height: 100%;
+            `;
+         }
+      } */
+
       //Sale==================================================
       if (targetElement.closest('.forms-sale__item')) {
          const saleRadioInput = targetElement.querySelector('input');
@@ -338,32 +402,39 @@ window.onload = function () {
          getArts(targetElement);
          e.preventDefault();
       }
-      //Burger===================================================================================================================
-      /* if (targetElement.classList.contains('menu__arrow') && document.querySelectorAll('.menu__button._active').length >= 0) {
-         const menu = document.querySelector('.menu');
-         const countActive = document.querySelectorAll('.menu__button._active').length;
-         const countButtons = document.querySelectorAll('.menu__button').length;
-         if (countButtons > countActive) {
-            const differenceCount = countButtons - countActive;
-            //const hideActive = document.querySelector('.menu').getAttribute('class').replace(/[^0-9]/g, '');
-            const countHideActive = countActive + 1;
-            menu.classList.remove(`_scroll-plus${countHideActive}`);
+   }
+   //Menu==================================================================================================================
+   function menuListHoverHelper() {
+      const menuList = document.querySelector('.menu__list');
+      menuList.addEventListener('mouseout', el => {
+         const targetElement = el.target;
+         if (targetElement.closest('.menu__item')) {
+            targetElement.setAttribute('disabled', '')
+            setTimeout(() => {
+               targetElement.removeAttribute('disabled')
+            }, 350)
          }
-         if (countActive != 1) {
-            menu.classList.add(`_scroll-plus${countActive}`);
-            const scrollPlus = document.querySelector(`._scroll-plus${countActive}`);
-            const countActivePecent = 100 + 15 * countActive;
-            menu.style.cssText =
-               `
-            height: ${countActivePecent}%;
-            `;
-         } else {
-            menu.style.cssText =
-               `
-            height: 100%;
-            `;
-         }
-      } */
+      });
+   } menuListHoverHelper()
+
+   function menuLangHelper() {
+      const menuLang = document.querySelector('.menu__lang');
+      const menuLangVisible = document.querySelector('.menu__lang-visible');
+      const menuOptions = document.querySelector('.menu__option')
+
+      console.log(menuOptions.value)
+   } //menuLangHelper()
+
+   function menuBurgerHoverHelper() {
+      const menu = document.querySelector('.menu');
+      const menuContacts = document.querySelector('.contacts-menu');
+      const menuHold = document.querySelector('.menu__menu-hold');
+
+
+      if (window.innerWidth >= 768 && menu.closest('._active')) {
+         menuHold.insertBefore(menuContacts, menuHold.children[0])
+         menuHold.insertBefore(menuLeng, menuHold.children[1])
+      }
    }
    //Contact Us==================================================================================================================
    function contacFormFocus() {
@@ -386,7 +457,7 @@ window.onload = function () {
          });
       });
       //Этот код позволяет отображать имя выбранного файла и сокращает его, если оно слишком велико
-      contacFormPhoto.addEventListener("change", function (e) {
+      contacFormPhoto.addEventListener("change", () => {
          if (contacFormPhoto.value.length > 35) {
             let firstStr = '';
             let lastStr = '';

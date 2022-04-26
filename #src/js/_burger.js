@@ -1,5 +1,5 @@
 //Burger ==============================================================================
-const iconMenu = document.querySelector('.menu__icon');
+/* const iconMenu = document.querySelector('.menu__icon');
 const iconContainer = document.querySelector('.icon-menu__container')
 
 if (iconMenu) {
@@ -10,4 +10,5 @@ if (iconMenu) {
 		iconBody.classList.toggle('_active');
 		iconContainer.classList.toggle('_active')
 	});
-}
+	menuBurgerHoverHelper()
+} */

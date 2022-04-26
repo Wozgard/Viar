@@ -20,10 +20,10 @@
 									<div class="menu__arrow _icon-angle-down"></div>
 								</button>
 								<ul class="menu__sub-list">
-									<li class="menu__sub-iten"><a>Link #1</a></li>
-									<li class="menu__sub-iten"><a>Link #2</a></li>
-									<li class="menu__sub-iten"><a>Link #3</a></li>
-									<li class="menu__sub-iten"><a>Link #4</a></li>
+									<li class="menu__sub-item"><a>Link #1</a></li>
+									<li class="menu__sub-item"><a>Link #2</a></li>
+									<li class="menu__sub-item"><a>Link #3</a></li>
+									<li class="menu__sub-item"><a>Link #4</a></li>
 								</ul>
 							</li>
 							<li class="menu__item">
@@ -32,10 +32,10 @@
 									<div class="menu__arrow _icon-angle-down"></div>
 								</button>
 								<ul class="menu__sub-list">
-									<li class="menu__sub-iten"><a>Link #1</a></li>
-									<li class="menu__sub-iten"><a>Link #2</a></li>
-									<li class="menu__sub-iten"><a>Link #3</a></li>
-									<li class="menu__sub-iten"><a>Link #4</a></li>
+									<li class="menu__sub-item"><a>Link #1</a></li>
+									<li class="menu__sub-item"><a>Link #2</a></li>
+									<li class="menu__sub-item"><a>Link #3</a></li>
+									<li class="menu__sub-item"><a>Link #4</a></li>
 								</ul>
 							</li>
 							<li class="menu__item">
@@ -44,10 +44,10 @@
 									<div class="menu__arrow _icon-angle-down"></div>
 								</button>
 								<ul class="menu__sub-list">
-									<li class="menu__sub-iten"><a>Link #1</a></li>
-									<li class="menu__sub-iten"><a>Link #2</a></li>
-									<li class="menu__sub-iten"><a>Link #3</a></li>
-									<li class="menu__sub-iten"><a>Link #4</a></li>
+									<li class="menu__sub-item"><a>Link #1</a></li>
+									<li class="menu__sub-item"><a>Link #2</a></li>
+									<li class="menu__sub-item"><a>Link #3</a></li>
+									<li class="menu__sub-item"><a>Link #4</a></li>
 								</ul>
 							</li>
 							<li class="menu__item">
@@ -55,10 +55,7 @@
 							</li>
 						</ul>
 					</nav>
-					<select class="menu__lang _lang" name="lang">
-						<option value="eng">Eng</option>
-						<option value="rus">Рус</option>
-					</select>
+					<div class="menu__menu-hold"></div>
 				</div>
 			</div>
 			<div class="header__action action-header">
@@ -70,11 +67,20 @@
 						<ul class="cart-header__list cart-list"></ul>
 					</div>
 				</div>
-				<select class="action-header__lang _lang" name="lang">
-					<option value="eng">Eng</option>
-					<option value="rus">Рус</option>
-				</select>
+				<div class="menu__lang lang-menu">
+					<div class="lang-menu__visible _lang _icon-angle-down">
+						<ul class="lang-menu__list">
+							<li data-value="rus" class="lang-menu__option">Рус</li>
+							<li data-value="eng" class="lang-menu__option">Eng</li>
+						</ul>
+					</div>
+					<select class="lang-menu__select" name="lang">
+						<option value="rus">Рус</option>
+						<option value="eng">Eng</option>
+					</select>
+				</div>
 			</div>
+
 			<button type="button" class="menu__icon icon-menu">
 				<div class="icon-menu__container">
 					<span></span>
