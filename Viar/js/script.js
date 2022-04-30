@@ -244,6 +244,9 @@ const artsUrl = 'json/arts.json';
 const headers = { 'Content-Type': 'application/json' };
 //Отслеживание любых кликов =====================================================================================================
 window.onload = function () {
+   if (window.innerWidth < 992 && isMobile.any()) {
+      menuBurgerHoverHelper()
+   }
    document.addEventListener('click', documentActions)
 
    //Actions=====================================================================================================================
@@ -264,16 +267,10 @@ window.onload = function () {
       }
       //Burger===================================================================================================================
       if (targetElement.closest('.menu__icon')) {
-         const iconMenu = document.querySelector('.menu__icon');
-         const iconContainer = document.querySelector('.icon-menu__container')
-         const iconBody = document.querySelector('.menu');
-
-         document.body.classList.toggle('_lock');
-         iconMenu.classList.toggle('_active');
-         iconBody.classList.toggle('_active');
-         iconContainer.classList.toggle('_active')
-
-         menuBurgerHoverHelper()
+         menuOpenClose('open')
+      }
+      if (!targetElement.closest('.menu__icon') && !targetElement.closest('.menu__menu-hold') && window.innerWidth >= 768) {
+         menuOpenClose('close')
       }
       if (targetElement.closest('.lang-menu__visible') && !document.querySelector('.lang-menu__visible').classList.contains('_hold')) {
          document.querySelector('.lang-menu__visible').classList.add('_hold')
@@ -282,6 +279,10 @@ window.onload = function () {
                item.classList.remove('_active')
             }
             item.style.transform = `translate(0, 0)`;
+            /*  item.removeAttribute('disabled')
+             setTimeout(() => {
+                mouseOverLangItem()
+             }, 100) */
          });
       } else if (targetElement.closest('.lang-menu__option') && document.querySelector('.lang-menu__visible').classList.contains('_hold')) {
          const optionsValue = targetElement.getAttribute('data-value');
@@ -296,6 +297,7 @@ window.onload = function () {
          if (optionsIndex != -1) { targetElement.style.transform = `translate(0, -${100 * (optionsCount - 1)}%)`; }
 
          targetElement.classList.add('_active');
+         /* targetElement.setAttribute('disabled', '') */
          document.querySelector('.lang-menu__visible').classList.remove('_hold');
       }
 
@@ -417,8 +419,52 @@ window.onload = function () {
       });
    } menuListHoverHelper()
 
-   function menuLangHelper() {
+   function menuOpenCloseClosing() {
+      let opend = 'close';
+      return function (action) {
+         const iconContainer = document.querySelector('.icon-menu__container')
+         const iconBody = document.querySelector('.menu');
+
+         if (action === 'open' && opend === 'close') {
+            if (window.innerWidth < 768) {
+               document.body.classList.toggle('_lock');
+            }
+            iconBody.classList.toggle('_active');
+            iconContainer.classList.toggle('_active');
+            opend = 'open';
+         }
+         if (action === 'close' && opend === 'open') {
+            iconBody.classList.remove('_active');
+            iconContainer.classList.remove('_active')
+            opend = 'close';
+         }
+
+      }
+   }
+   const menuOpenClose = menuOpenCloseClosing();
+   /* function mouseOverLangItem() {
       const menuLang = document.querySelector('.menu__lang');
+      menuLang.addEventListener('mouseover', e => {
+         const targetElement = e.target;
+         if (targetElement.closest('.lang-menu__option') && !targetElement.hasAttribute('disabled')) {
+            targetElement.style.cssText = `
+            background-color: #fa7846;
+            color:#fff;
+            `;
+         }
+      });
+      menuLang.addEventListener('mouseout', e => {
+         const targetElement = e.target;
+         if (targetElement.closest('.lang-menu__option') && !targetElement.hasAttribute('disabled')) {
+            targetElement.style.cssText = `
+            background-color: #fff;
+            color: #1e2533;
+            `;
+         }
+      });
+   } */
+
+   function menuLangHelper() {
       const menuLangVisible = document.querySelector('.menu__lang-visible');
       const menuOptions = document.querySelector('.menu__option')
 
@@ -429,12 +475,11 @@ window.onload = function () {
       const menu = document.querySelector('.menu');
       const menuContacts = document.querySelector('.contacts-menu');
       const menuHold = document.querySelector('.menu__menu-hold');
+      const menuLang = document.querySelector('.menu__lang');
 
+      menuHold.insertBefore(menuContacts, menuHold.children[0])
+      menuHold.insertBefore(menuLang, menuHold.children[1])
 
-      if (window.innerWidth >= 768 && menu.closest('._active')) {
-         menuHold.insertBefore(menuContacts, menuHold.children[0])
-         menuHold.insertBefore(menuLeng, menuHold.children[1])
-      }
    }
    //Contact Us==================================================================================================================
    function contacFormFocus() {
