@@ -267,9 +267,9 @@ window.onload = function () {
       }
       //Burger===================================================================================================================
       if (targetElement.closest('.menu__icon')) {
-         menuOpenClose('open')
+         menuOpenClose()
       }
-      if (!targetElement.closest('.menu__icon') && !targetElement.closest('.menu__menu-hold') && window.innerWidth >= 768) {
+      if (!targetElement.closest('.menu__icon') && !targetElement.closest('.menu__menu-hold') && window.innerWidth >= 768 && window.innerWidth < 992) {
          menuOpenClose('close')
       }
       if (targetElement.closest('.lang-menu__visible') && !document.querySelector('.lang-menu__visible').classList.contains('_hold')) {
@@ -407,16 +407,26 @@ window.onload = function () {
    }
    //Menu==================================================================================================================
    function menuListHoverHelper() {
-      const menuList = document.querySelector('.menu__list');
-      menuList.addEventListener('mouseout', el => {
+      const menuItem = document.querySelectorAll('.menu__item');
+      /* const disable = false;
+
+      menuList.addEventListener('mouseover', el => {
          const targetElement = el.target;
-         if (targetElement.closest('.menu__item')) {
-            targetElement.setAttribute('disabled', '')
-            setTimeout(() => {
-               targetElement.removeAttribute('disabled')
-            }, 350)
+         if(targetElement.closest('.menu__sub-list')){
+            disable = false;
          }
-      });
+      }) */
+      menuItem.forEach(i => {
+         i.addEventListener('mouseleave', el => {
+            const targetElement = el.target;
+            if (!targetElement.hasAttribute('disabled')) {
+               targetElement.setAttribute('disabled', '')
+               setTimeout(() => {
+                  targetElement.removeAttribute('disabled')
+               }, 360)
+            }
+         });
+      })
    } menuListHoverHelper()
 
    function menuOpenCloseClosing() {
@@ -425,15 +435,17 @@ window.onload = function () {
          const iconContainer = document.querySelector('.icon-menu__container')
          const iconBody = document.querySelector('.menu');
 
-         if (action === 'open' && opend === 'close') {
+         if (opend === 'close' && action !== 'close') {
             if (window.innerWidth < 768) {
-               document.body.classList.toggle('_lock');
+               document.body.classList.add('_lock');
             }
-            iconBody.classList.toggle('_active');
-            iconContainer.classList.toggle('_active');
+            iconBody.classList.add('_active');
+            iconContainer.classList.add('_active');
             opend = 'open';
-         }
-         if (action === 'close' && opend === 'open') {
+         } else if (opend === 'open' && action !== 'open') {
+            if (window.innerWidth < 768) {
+               document.body.classList.remove('_lock');
+            }
             iconBody.classList.remove('_active');
             iconContainer.classList.remove('_active')
             opend = 'close';
