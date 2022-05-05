@@ -7,9 +7,14 @@ const urlServer = 'http://localhost:3000';
 const saleUrl = 'json/sale.json';
 const artsUrl = 'json/arts.json';
 const headers = { 'Content-Type': 'application/json' };
+
+
 //Отслеживание любых кликов =====================================================================================================
 window.onload = function () {
    if (window.innerWidth < 992 && isMobile.any()) {
+      setTimeout(() => {
+         document.querySelector('.menu__lang').style.display = `block`;
+      }, 300);
       menuBurgerHoverHelper()
    }
    document.addEventListener('click', documentActions)
@@ -44,13 +49,10 @@ window.onload = function () {
                item.classList.remove('_active')
             }
             item.style.transform = `translate(0, 0)`;
-            /*  item.removeAttribute('disabled')
-             setTimeout(() => {
-                mouseOverLangItem()
-             }, 100) */
          });
       } else if (targetElement.closest('.lang-menu__option') && document.querySelector('.lang-menu__visible').classList.contains('_hold')) {
          const optionsValue = targetElement.getAttribute('data-value');
+         const langList = document.querySelector('.lang-menu__list');
          const langSelect = document.querySelector('.lang-menu__select');
          langSelect.setAttribute('value', optionsValue);
 
@@ -60,9 +62,18 @@ window.onload = function () {
          const optionsIndex = Array.from(options).findIndex((el, i, ar) => el == targetElement ? i : null);
          const optionsCount = options.length;
          if (optionsIndex != -1) { targetElement.style.transform = `translate(0, -${100 * (optionsCount - 1)}%)`; }
+         if (optionsIndex != -1 && window.innerWidth < 992) { targetElement.style.transform = `translate(-${100 * (optionsCount - 1)}%, 0)`; }
+
+         /* targetElement.setAttribute('disabled', '') */
 
          targetElement.classList.add('_active');
-         /* targetElement.setAttribute('disabled', '') */
+         document.querySelector('.lang-menu__visible').classList.remove('_hold');
+         setTimeout(() => {
+            targetElement.style.transform = `translate(0, 0)`;
+            langList.insertBefore(targetElement, langList.children[0])
+         }, 300)
+      }
+      if (!targetElement.closest('.lang-menu__visible') && document.querySelector('.lang-menu__visible').classList.contains('_hold')) {
          document.querySelector('.lang-menu__visible').classList.remove('_hold');
       }
 
@@ -173,14 +184,6 @@ window.onload = function () {
    //Menu==================================================================================================================
    function menuListHoverHelper() {
       const menuItem = document.querySelectorAll('.menu__item');
-      /* const disable = false;
-
-      menuList.addEventListener('mouseover', el => {
-         const targetElement = el.target;
-         if(targetElement.closest('.menu__sub-list')){
-            disable = false;
-         }
-      }) */
       menuItem.forEach(i => {
          i.addEventListener('mouseleave', el => {
             const targetElement = el.target;
@@ -197,7 +200,7 @@ window.onload = function () {
    function menuOpenCloseClosing() {
       let opend = 'close';
       return function (action) {
-         const iconContainer = document.querySelector('.icon-menu__container')
+         const iconMenu = document.querySelector('.icon-menu')
          const iconBody = document.querySelector('.menu');
 
          if (opend === 'close' && action !== 'close') {
@@ -205,14 +208,14 @@ window.onload = function () {
                document.body.classList.add('_lock');
             }
             iconBody.classList.add('_active');
-            iconContainer.classList.add('_active');
+            iconMenu.classList.add('_active');
             opend = 'open';
          } else if (opend === 'open' && action !== 'open') {
             if (window.innerWidth < 768) {
                document.body.classList.remove('_lock');
             }
             iconBody.classList.remove('_active');
-            iconContainer.classList.remove('_active')
+            iconMenu.classList.remove('_active')
             opend = 'close';
          }
 
@@ -249,14 +252,13 @@ window.onload = function () {
    } //menuLangHelper()
 
    function menuBurgerHoverHelper() {
-      const menu = document.querySelector('.menu');
+      const menuBody = document.querySelector('.menu__body');
       const menuContacts = document.querySelector('.contacts-menu');
       const menuHold = document.querySelector('.menu__menu-hold');
       const menuLang = document.querySelector('.menu__lang');
 
       menuHold.insertBefore(menuContacts, menuHold.children[0])
       menuHold.insertBefore(menuLang, menuHold.children[1])
-
    }
    //Contact Us==================================================================================================================
    function contacFormFocus() {
@@ -337,6 +339,7 @@ window.onload = function () {
             if (imageWidth < imageHeight) {
                item.classList.add('_vertical');
             }
+            item.classList.add('_done');
          });
       }
    }

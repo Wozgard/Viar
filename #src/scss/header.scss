@@ -51,8 +51,8 @@
       overflow: auto;
       transition: all 0.3s ease-in-out 0s;
       transform: translate(-200px, 0);
-      flex-direction: column-reverse;
-      position: absolute;
+      flex-direction: column;
+      position: fixed;
       width: 100vw;
       height: 100vh;
       top: 0;
@@ -60,10 +60,29 @@
       background-color: $pinkColor;
       z-index: 2;
 
+      .menu__menu-hold {
+         width: auto;
+         height: auto;
+         position: static;
+         margin-top: 0;
+         padding-top: 0;
+         margin-top: 20px;
+         transform: translate(0, 0);
+         flex-direction: row;
+      }
+
+      .contacts-menu {
+         display: flex;
+      }
+
       &._active {
          opacity: 1;
          visibility: visible;
          transform: translate(0px, 0px);
+
+         .menu__menu-hold {
+            opacity: 1;
+         }
 
          .contacts-menu {}
 
@@ -148,12 +167,10 @@
       flex: 1 1 auto;
 
       @media (max-width: $md3+px) {
-         position: absolute;
          width: 100%;
          margin-top: 90px;
          top: 0;
          left: 0;
-         z-index: 10;
       }
    }
 
@@ -312,6 +329,7 @@
       background: $orangeGradient;
 
       @media (max-width: $md3+px) {
+         position: static;
          margin-top: 10px;
          padding: 20px;
       }
@@ -374,6 +392,11 @@
       margin-bottom: 20px;
    }
 
+   @media (max-width: $md2+px) {
+      margin-right: 10px;
+      margin-bottom: 0px;
+   }
+
    // .contacts-menu__link
    &__link {
       background: #ad8780;
@@ -387,6 +410,13 @@
          &:not(:last-child) {
             margin-right: 0;
             margin-bottom: 20px;
+         }
+      }
+
+      @media (max-width: $md3+px) {
+         &:not(:last-child) {
+            margin-right: 6px;
+            margin-bottom: 0px;
          }
       }
 
@@ -473,6 +503,10 @@
 
    flex: 1 1 auto;
 
+   @media (max-width: $md2+px) {
+      display: none;
+   }
+
    // .lang-menu__visible
    &__visible {
       cursor: pointer;
@@ -494,6 +528,10 @@
          font-size: 8px;
          transition: all 0.3s ease 0s;
          z-index: $zLangIndex + 2;
+
+         @media (max-width: $md2+px) {
+            transform: rotate(-90deg);
+         }
       }
 
       &._hold {
@@ -502,6 +540,10 @@
          &::before {
             opacity: 0;
             transform: rotate(180deg);
+
+            @media (max-width: $md2+px) {
+               transform: rotate(90deg);
+            }
          }
 
          .lang-menu__list {
@@ -535,6 +577,10 @@
       top: 0;
       left: 0;
 
+      @media (max-width: $md2+px) {
+         flex-direction: row;
+         width: auto;
+      }
    }
 
    // .lang-menu__option
@@ -547,16 +593,32 @@
       padding-right: 20px;
       z-index: $zLangIndex;
       background-color: #fff;
-      transition: all 0.3s ease 0s;
+      transition: all 0.3s ease-in-out 0s;
+
+      @media (max-width: $md2+px) {
+         width: 70px;
+      }
 
       &:first-child {
          border-top-left-radius: 7px;
          border-top-right-radius: 7px;
+
+         @media (max-width: $md2+px) {
+            border-top-left-radius: 7px;
+            border-top-right-radius: 0px;
+            border-bottom-left-radius: 7px;
+         }
       }
 
       &:last-child {
          border-bottom-left-radius: 7px;
          border-bottom-right-radius: 7px;
+
+         @media (max-width: $md2+px) {
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 7px;
+            border-top-right-radius: 7px;
+         }
       }
 
       &._active {
@@ -646,6 +708,37 @@
       border-radius: 50%;
    }
 
+   &._active {
+      .icon-menu__container span {
+         transform: scale(0);
+
+         &:first-child {
+            transform: rotate(-45deg);
+            top: calc(50% - 0.75px);
+         }
+
+         &:last-child {
+            transform: rotate(45deg);
+            bottom: calc(50% - 0.75px);
+         }
+      }
+
+      @media (max-width: $md2+px) {
+         &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0.8;
+            width: 100vw;
+            height: 85px;
+            background-color: $pinkColor;
+            z-index: 2;
+         }
+      }
+   }
+
+   // .icon-menu__container
    &__container {
       display: none;
 
@@ -657,7 +750,7 @@
          cursor: pointer;
          z-index: 5;
 
-         span {
+         & span {
             transition: all 0.3s ease 0s;
             top: calc(50% - 0.75px);
             left: 0;
@@ -673,22 +766,6 @@
             &:last-child {
                top: auto;
                bottom: 0;
-            }
-         }
-
-         &._active {
-            span {
-               transform: scale(0);
-
-               &:first-child {
-                  transform: rotate(-45deg);
-                  top: calc(50% - 0.75px);
-               }
-
-               &:last-child {
-                  transform: rotate(45deg);
-                  bottom: calc(50% - 0.75px);
-               }
             }
          }
       }
