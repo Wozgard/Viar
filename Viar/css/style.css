@@ -272,6 +272,7 @@ h5 {
       -ms-flex-align: center;
           align-items: center;
   top: 20px;
+  position: fixed;
   z-index: 10;
 }
 
@@ -279,7 +280,7 @@ h5 {
   content: "";
   width: 100vw;
   height: 109px;
-  display: none;
+  position: fixed;
   opacity: 0.7;
   top: 0;
   left: 0;
@@ -626,7 +627,7 @@ h5 {
 } */
 
 .syte-nav {
-  margin-top: 70px;
+  margin-top: 130px;
   font-size: 14px;
 }
 
@@ -2040,7 +2041,7 @@ span.orange {
   }
 
   .syte-nav {
-    margin-top: calc(50px + 20 * ((100vw - 320px) / 1060));
+    margin-top: calc(110px + 20 * ((100vw - 320px) / 1060));
   }
 
   .footer__body {

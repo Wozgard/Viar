@@ -12,13 +12,14 @@
       justify-content: space-between;
       align-items: center;
       top: 20px;
+      position: fixed;
       z-index: 10;
 
       &::after {
          content: '';
          width: 100vw;
          height: 109px;
-         display: none;
+         position: fixed;
          opacity: 0.7;
          top: 0;
          left: 0;
@@ -677,8 +678,8 @@
 //=====================================================================
 
 .syte-nav {
-   //@include adaptiv-value("margin-top", 130, 110, 1);
-   @include adaptiv-value("margin-top", 70, 50, 1);
+   @include adaptiv-value("margin-top", 130, 110, 1);
+   //@include adaptiv-value("margin-top", 70, 50, 1);
    font-size: 14px;
 
    // .syte-nav__main
