@@ -238,6 +238,7 @@ if (iconMenu) {
 } */
 ;
 
+// Variable for fetch
 const urlServer = 'http://localhost:3000';
 const saleUrl = 'json/sale.json';
 const artsUrl = 'json/arts.json';
@@ -247,12 +248,19 @@ const headers = { 'Content-Type': 'application/json' };
 //Отслеживание любых кликов =====================================================================================================
 window.onload = function () {
    if (window.innerWidth < 992 && isMobile.any()) {
-      setTimeout(() => {
-         document.querySelector('.menu__lang').style.display = `block`;
-      }, 300);
-      menuBurgerHoverHelper()
+      adaptiveOnLoad()
    }
    document.addEventListener('click', documentActions)
+   window.addEventListener('scroll', () => {
+      if (document.querySelectorAll('.menu__item._hover').length > 0 && window.innerWidth > 767.98) {
+         document.querySelectorAll('.menu__item._hover').forEach(item => {
+            item.classList.remove('_hover')
+         });
+      }
+      if (document.querySelector('.lang-menu__visible').classList.contains('_hold')) {
+         document.querySelector('.lang-menu__visible').classList.remove('_hold');
+      }
+   })
 
    //Actions=====================================================================================================================
    function documentActions(e) {
@@ -264,9 +272,8 @@ window.onload = function () {
             targetElement.closest('.menu__item').classList.toggle('_hover');
          }
          if (!targetElement.closest('.menu__item') && document.querySelectorAll('.menu__item._hover').length > 0) {
-            const menuItemHover = document.querySelectorAll('.menu__item._hover');
-            menuItemHover.forEach(el => {
-               el.removeClass("_hover")
+            document.querySelectorAll('.menu__item._hover').forEach(item => {
+               item.classList.remove('_hover')
             });
          }
       }
@@ -297,11 +304,18 @@ window.onload = function () {
          const optionsIndex = Array.from(options).findIndex((el, i, ar) => el == targetElement ? i : null);
          const optionsCount = options.length;
          if (optionsIndex != -1) { targetElement.style.transform = `translate(0, -${100 * (optionsCount - 1)}%)`; }
-         if (optionsIndex != -1 && window.innerWidth < 992) { targetElement.style.transform = `translate(-${100 * (optionsCount - 1)}%, 0)`; }
-
-         /* targetElement.setAttribute('disabled', '') */
+         if (optionsIndex != -1 && window.innerWidth < 768) { targetElement.style.transform = `translate(-${100 * (optionsCount - 1)}%, 0)`; }
 
          targetElement.classList.add('_active');
+         /* options.forEach(item => {
+            if (!item.classList.contains('_active')) {
+               item.style.backgroundColor = `#eee`;
+               setTimeout(() => {
+                  item.style.backgroundColor = `#fff`;
+               }, 300)
+            }
+         }) */
+
          document.querySelector('.lang-menu__visible').classList.remove('_hold');
          setTimeout(() => {
             targetElement.style.transform = `translate(0, 0)`;
@@ -415,6 +429,15 @@ window.onload = function () {
          getArts(targetElement);
          e.preventDefault();
       }
+   }
+
+   //Adaptive=============================================================================================
+   function adaptiveOnLoad() {
+      setTimeout(() => {
+         document.querySelector('.menu__lang').style.display = `block`;
+         document.querySelector('.contacts-menu').style.display = `block`;
+      }, 300);
+      menuBurgerHoverHelper()
    }
    //Menu==================================================================================================================
    function menuListHoverHelper() {

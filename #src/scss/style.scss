@@ -142,6 +142,8 @@ h6 {
 .wrapper {
    display: flex;
    flex-direction: column;
+   position: relative;
+   overflow: hidden;
 }
 
 ._container {
@@ -884,6 +886,10 @@ h5 {
       margin-bottom: 30px;
       @include adaptiv-value("font-size", 18, 16, 1);
       font-weight: 600;
+
+      @media (max-width: $md2+px) {
+         margin: 0px 15px 30px;
+      }
    }
 
    // .forms-sale__form
