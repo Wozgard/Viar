@@ -1,5 +1,5 @@
 /node_modules
-/ #src
+/ '#src'
 /Source
 gulpfile.js
 package-lock.json
