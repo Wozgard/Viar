@@ -200,7 +200,7 @@ window.onload = function () {
    function adaptiveOnLoad() {
       setTimeout(() => {
          document.querySelector('.menu__lang').style.display = `block`;
-         document.querySelector('.contacts-menu').style.display = `block`;
+         document.querySelector('.contacts-menu').style.display = `flex`;
       }, 300);
       menuBurgerHoverHelper()
    }

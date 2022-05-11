@@ -12,19 +12,23 @@
       justify-content: space-between;
       align-items: center;
       top: 20px;
-      z-index: 10;
+      //z-index: 10;
 
-      &::after {
-         content: '';
-         width: 100vw;
-         height: 109px;
-         display: none;
-         opacity: 0.7;
-         top: 0;
-         left: 0;
-         background: linear-gradient(95.97deg, #fdf8f4 0.93%, #f2e3df 97.39%);
-         z-index: 9;
-      }
+      /* @media (max-width: $md2+px) {
+         &::after {
+            content: '';
+            //$hederBodyAfterDisplay: none;
+            width: 100vw;
+            height: 85px;
+            position: absolute;
+            opacity: 0.7;
+            top: 0;
+            left: 0;
+            //background: linear-gradient(95.97deg, #fdf8f4 0.93%, #f2e3df 97.39%);
+            background-color: $pinkColor;
+            z-index: 9;
+         }
+      } */
    }
 
    // .header__main
@@ -32,7 +36,7 @@
       flex: 1 1 auto;
       display: flex;
       align-items: center;
-      z-index: 10;
+      //z-index: 10;
    }
 
    // .header__logo
@@ -43,7 +47,7 @@
 
    // .header__action
    &__action {
-      z-index: 10;
+      z-index: 4;
    }
 
    // .header__syte-nav
@@ -91,6 +95,7 @@
       .contacts-menu {
          display: flex;
       }
+
 
       &._active {
          opacity: 1;
@@ -402,7 +407,6 @@
 
    @media (max-width: $md2+px) {
       display: none;
-      opacity: 0;
       margin-right: 0;
       margin-bottom: 20px;
    }
@@ -723,18 +727,32 @@
 //Icon-menu===========================================================
 .icon-menu {
    display: none;
-   z-index: 10;
 
    @media (max-width: $md2+px) {
       display: block;
-      background: #fff;
-      padding: 14px 11px;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
+      margin-left: 10px;
+
+      &::before {
+         content: '';
+         position: absolute;
+         top: 0;
+         left: 0;
+         opacity: 0;
+         width: 100vw;
+         height: 85px;
+         transform: translate(-100%, 0);
+         transition: all 0.3s ease-in-out 0s;
+         background-color: $pinkColor;
+         z-index: 3;
+      }
    }
 
    &._active {
+      &::before {
+         opacity: 0.8;
+         transform: translate(0, 0);
+      }
+
       .icon-menu__container span {
          transform: scale(0);
 
@@ -746,20 +764,6 @@
          &:last-child {
             transform: rotate(45deg);
             bottom: calc(50% - 0.75px);
-         }
-      }
-
-      @media (max-width: $md3+px) {
-         &::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            opacity: 0.8;
-            width: 100vw;
-            height: 85px;
-            background-color: $pinkColor;
-            z-index: 2;
          }
       }
    }
@@ -774,7 +778,18 @@
          width: 18px;
          height: 13.5px;
          cursor: pointer;
-         z-index: 5;
+         z-index: 4;
+
+         &::before {
+            content: '';
+            position: absolute;
+            top: calc((100% - 40px) / 2);
+            left: calc((100% - 40px) / 2);
+            background: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+         }
 
          & span {
             transition: all 0.3s ease 0s;
