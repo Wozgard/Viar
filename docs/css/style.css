@@ -625,6 +625,10 @@ h5 {
    --select-focus: $orangeColor;
 } */
 
+.cart-header {
+  font-family: "Inter";
+}
+
 .syte-nav {
   margin-top: 70px;
   font-size: 14px;
