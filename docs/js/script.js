@@ -698,6 +698,7 @@ window.onload = function () {
 
       const saleForm = document.forms.saleForm;
       const itemLists = document.querySelectorAll('.forms-sale__list');
+      const item = document.querySelectorAll('.forms-sale__item');
       const itemCount = saleForm.querySelectorAll('.forms-sale__item').length;
 
 
@@ -717,6 +718,9 @@ window.onload = function () {
          itemLists.forEach(i => {
             i.style.maxHeight = null;
             i.style.transform = null;
+         })
+         item.forEach(e => {
+            e.style.marginRight = 0;
          })
       }
 
@@ -772,8 +776,6 @@ window.onload = function () {
       });
       if (response.ok) {
          let resolte = await response.json();
-         // одна функция возвращает вторую, которая возвращает третью и все для того, чтобы точно убедиться в том, 
-         // что формы подгружены и объект функции saleQuestionHelperUpper не создался раньше времени, замыкая значение
          return loadQuestion(resolte);
       }
    }
@@ -794,12 +796,7 @@ window.onload = function () {
          let buttonStyle = '';
 
          if (stepCounter > 0) {
-            prevButton = `
-            <button type="button" class="forms-sale__button forms-sale__button_prev _icon-angle-down btn">Предыдущий шаг</button>
-            `;
-            buttonStyle = `
-            style="width: 180px;"
-            `;
+            prevButton = window.innerWidth < 530 ? `<button type="button" class="forms-sale__button forms-sale__button_prev _icon-angle-down btn"></button>` : `<button type="button" class="forms-sale__button forms-sale__button_prev _icon-angle-down btn">Предыдущий шаг</button>`;
          }
 
          questions.forEach(el => {
@@ -814,10 +811,10 @@ window.onload = function () {
          });
 
 
-         let nextButton = `<button type="button" class="forms-sale__button _icon-angle-down btn" ${buttonStyle}>Следующий шаг</button>`;
+         let nextButton = stepCounter === 0 ? `<button type="button" class="forms-sale__button forms-sale__button_first _icon-angle-down btn">Следующий шаг</button>` : window.innerWidth < 530 ? `<button type="button" class="forms-sale__button _icon-angle-down btn"></button>` : `<button type="button" class="forms-sale__button _icon-angle-down btn">Следующий шаг</button>`;
 
          if (lastIndex == stepId) {
-            nextButton = `<button type="button" class="forms-sale__button forms-sale__button_send _icon-angle-down btn" ${buttonStyle}>Отправить</button>`;
+            nextButton = `<button type="button" class="forms-sale__button forms-sale__button_send btn">Отправить</button>`;
          }
 
          let template = `
@@ -840,6 +837,5 @@ window.onload = function () {
       currentStep()
       saleRadioChecking()
       saleQuestionHelper()
-      return true
    }
 }

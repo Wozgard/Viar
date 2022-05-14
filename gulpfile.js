@@ -1,10 +1,9 @@
-
 let project_folder = require('path').basename(__dirname);
 let source_folder = "#src";
 
 let fs = require('fs');
 
-let path = {
+const path = {
    build: {
       html: "docs/",
       css: "docs/css/",
@@ -33,6 +32,7 @@ let path = {
    },
    clean: "./docs/"
 }
+
 
 let { src, dest } = require('gulp'),
    gulp = require('gulp'),
@@ -238,6 +238,8 @@ function clean(params) {
 
 let build = gulp.series(clean, gulp.parallel(js, favicon, css, html, json, images, fonts/*, swiper_js, swiper_css*/), fontsStyle);
 let watch = gulp.parallel(build, watchFiles, browserSync);
+
+gulp.task('default', watch)
 
 exports.favicon = favicon;
 exports.json = json;
