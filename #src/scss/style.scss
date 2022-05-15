@@ -409,12 +409,13 @@ h5 {
 
    //.item-arts__text
    &__text {
-      @include adaptiv-value("font-size", 16, 14, 1);
+      @include adaptiv-value("font-size", 16, 12, 1);
       line-height: 24px;
       text-align: center;
-      padding: 0 50px;
+      @include adaptiv-value('padding-left', 50, 13, 1);
+      @include adaptiv-value('padding-right', 50, 13, 1);
       margin-bottom: 24px;
-      @include adaptiv-value("margin-top", 10, 70, 1);
+      margin-top: 15px;
    }
 
    // .item-arts__price
@@ -954,15 +955,15 @@ h5 {
          opacity: 0;
          visibility: hidden;
          position: absolute;
-         @include adaptiv-value('left', 10, 9, 1);
-         @include adaptiv-value('top', 8, 7, 1);
+         @include adaptiv-value('left', 11.3, 9, 1);
+         @include adaptiv-value('top', 9, 7, 1);
          content: "";
          display: block;
          width: 0px;
          height: 0px;
          border-radius: 50%;
          background-color: $orangeColor;
-         transition: all 4s ease 0s;
+         transition: all 0.3s ease 0s;
          z-index: 2;
       }
 

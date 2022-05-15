@@ -1148,9 +1148,10 @@ span.orange {
   font-size: 16px;
   line-height: 24px;
   text-align: center;
-  padding: 0 50px;
+  padding-left: 50px;
+  padding-right: 50px;
   margin-bottom: 24px;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 .item-arts__price {
@@ -1669,17 +1670,17 @@ span.orange {
   opacity: 0;
   visibility: hidden;
   position: absolute;
-  left: 10px;
-  top: 8px;
+  left: 11.3px;
+  top: 9px;
   content: "";
   display: block;
   width: 0px;
   height: 0px;
   border-radius: 50%;
   background-color: #fa7846;
-  -webkit-transition: all 4s ease 0s;
-  -o-transition: all 4s ease 0s;
-  transition: all 4s ease 0s;
+  -webkit-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
   z-index: 2;
 }
 
@@ -2194,11 +2195,15 @@ span.orange {
   }
 
   .item-arts__text {
-    font-size: calc(14px + 2 * ((100vw - 320px) / 1060));
+    font-size: calc(12px + 4 * ((100vw - 320px) / 1060));
   }
 
   .item-arts__text {
-    margin-top: calc(70px + -60 * ((100vw - 320px) / 1060));
+    padding-left: calc(13px + 37 * ((100vw - 320px) / 1060));
+  }
+
+  .item-arts__text {
+    padding-right: calc(13px + 37 * ((100vw - 320px) / 1060));
   }
 
   .item-arts__price {
@@ -2250,11 +2255,11 @@ span.orange {
   }
 
   .forms-sale__item::before {
-    left: calc(9px + 1 * ((100vw - 320px) / 1060));
+    left: calc(9px + 2.3 * ((100vw - 320px) / 1060));
   }
 
   .forms-sale__item::before {
-    top: calc(7px + 1 * ((100vw - 320px) / 1060));
+    top: calc(7px + 2 * ((100vw - 320px) / 1060));
   }
 
   .forms-sale__item._active::before {
