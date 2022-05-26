@@ -206,16 +206,16 @@ h6 {
 @font-face {
   font-family: "Inter";
   font-display: swap;
-  src: url("../fonts/Inter-Medium.woff") format("woff"), url("../fonts/Inter-Medium.woff2") format("woff2");
-  font-weight: 400;
+  src: url("../fonts/Inter-Semibold.woff") format("woff"), url("../fonts/Inter-Semibold.woff2") format("woff2");
+  font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Inter";
   font-display: swap;
-  src: url("../fonts/Inter-Semibold.woff") format("woff"), url("../fonts/Inter-Semibold.woff2") format("woff2");
-  font-weight: 600;
+  src: url("../fonts/Inter-Medium.woff") format("woff"), url("../fonts/Inter-Medium.woff2") format("woff2");
+  font-weight: 400;
   font-style: normal;
 }
 
@@ -743,7 +743,7 @@ h5 {
 }
 
 .massegers-footer__title {
-  font-weight: 500;
+  font-weight: 600;
   margin-bottom: 10px;
 }
 
@@ -927,7 +927,7 @@ h5 {
           justify-content: center;
   border-radius: 10px;
   padding: 30px;
-  font-weight: 700;
+  font-weight: 600;
   color: #fff;
   background: -webkit-gradient(linear, left top, right top, from(#fc8c5f), to(#fa7846));
   background: -o-linear-gradient(left, #fc8c5f 0%, #fa7846 100%);
