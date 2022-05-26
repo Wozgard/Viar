@@ -247,7 +247,9 @@ const headers = { 'Content-Type': 'application/json' };
 
 //Отслеживание любых кликов =====================================================================================================
 window.onload = function () {
-   window.scrollTo(0, 1)
+   setTimeout(() => {
+      window.scrollTo(0, 1);
+   }, 0)
    if (window.innerWidth < 992 && isMobile.any()) {
       adaptiveOnLoad()
    }
