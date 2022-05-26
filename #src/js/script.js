@@ -12,6 +12,7 @@ const headers = { 'Content-Type': 'application/json' };
 
 //Отслеживание любых кликов =====================================================================================================
 window.onload = function () {
+   document.documentElement.requestFullscreen({ navigationUI: 'hide' });
    if (window.innerWidth < 992 && isMobile.any()) {
       adaptiveOnLoad()
    }

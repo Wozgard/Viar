@@ -1538,6 +1538,10 @@ span.orange {
   background-color: #ad8780;
 }
 
+.forms-sale__step._view:not(:last-child) {
+  margin-right: 0px;
+}
+
 .forms-sale__step._active,
 .forms-sale__step._view {
   opacity: 1;
