@@ -247,7 +247,7 @@ const headers = { 'Content-Type': 'application/json' };
 
 //Отслеживание любых кликов =====================================================================================================
 window.onload = function () {
-   document.documentElement.requestFullscreen({ navigationUI: 'hide' });
+   window.scrollTo(0, 1)
    if (window.innerWidth < 992 && isMobile.any()) {
       adaptiveOnLoad()
    }
