@@ -75,7 +75,7 @@
       flex-direction: column;
       position: fixed;
       width: 100vw;
-      height: 100vh;
+      height: -webkit-fill-available;
       top: 0;
       right: 0;
       background-color: $pinkColor;
