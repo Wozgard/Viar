@@ -18,6 +18,10 @@
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+:root {
+  --app-height: 100%;
+}
+
 a:focus,
 a:active {
   outline: none;
@@ -32,8 +36,8 @@ aside {
 
 html,
 body {
-  height: 100%;
-  width: 100%;
+  width: 100vw;
+  height: 100vh;
   font-size: 100%;
   line-height: 1;
   font-size: 14px;
@@ -2453,7 +2457,7 @@ span.orange {
             flex-direction: column;
     position: fixed;
     width: 100vw;
-    height: -webkit-fill-available;
+    height: 100vh;
     top: 0;
     right: 0;
     background-color: #fbf2ea;
@@ -2737,6 +2741,13 @@ span.orange {
 
   .images-sale__text::before {
     font-size: calc(0px + 30 * ((100vw - 320px) / 1060));
+  }
+}
+
+@media not all and (hover: hover) {
+  html,
+  body {
+    height: var(--app-height);
   }
 }
 

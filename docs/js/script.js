@@ -247,12 +247,14 @@ const headers = { 'Content-Type': 'application/json' };
 
 //Отслеживание любых кликов =====================================================================================================
 window.onload = function () {
-   setTimeout(() => {
-      window.scrollTo({
-         top: 1,
-         behavior: "smooth"
-      });
-   }, 0)
+   // Чтобы решить проблему 100vh на мобильных устройствах приходится использовать --app-height
+   const appHeight = () => {
+      const doc = document.documentElement
+      doc.style.setProperty('--app-height', '${window.innerHeight}px')
+   }
+   window.addEventListener('resize', appHeight)
+   appHeight()
+
    if (window.innerWidth < 992 && isMobile.any()) {
       adaptiveOnLoad()
    }
