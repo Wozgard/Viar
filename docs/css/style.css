@@ -2464,6 +2464,13 @@ span.orange {
     z-index: 2;
   }
 
+  .menu::after {
+    content: "";
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+  }
+
   .menu .menu__menu-hold {
     width: auto;
     height: auto;
