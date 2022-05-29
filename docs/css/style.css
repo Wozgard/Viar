@@ -2457,7 +2457,7 @@ span.orange {
             flex-direction: column;
     position: fixed;
     width: 100vw;
-    height: -webkit-fill-available;
+    height: 100%;
     top: 0;
     right: 0;
     background-color: #fbf2ea;
