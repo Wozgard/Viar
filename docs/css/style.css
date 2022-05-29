@@ -36,8 +36,8 @@ aside {
 
 html,
 body {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   font-size: 100%;
   line-height: 1;
   font-size: 14px;
@@ -2467,6 +2467,8 @@ span.orange {
   .menu::after {
     content: "";
     position: fixed;
+    top: 0;
+    left: 0;
     width: 100vw;
     height: 100vh;
   }
