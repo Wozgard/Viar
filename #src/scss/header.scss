@@ -81,7 +81,7 @@
       background-color: $pinkColor;
       z-index: 2;
 
-      &::after {
+      /* &::after {
          content: '';
          position: fixed;
          top: 0;
@@ -89,7 +89,7 @@
          width: 100vw;
          height: 100vh;
 
-      }
+      } */
 
       .menu__menu-hold {
          width: auto;

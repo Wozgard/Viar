@@ -2462,15 +2462,15 @@ span.orange {
     right: 0;
     background-color: #fbf2ea;
     z-index: 2;
-  }
+    /* &::after {
+       content: '';
+       position: fixed;
+       top: 0;
+       left: 0;
+       width: 100vw;
+       height: 100vh;
 
-  .menu::after {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    } */
   }
 
   .menu .menu__menu-hold {
