@@ -1,0 +1,303 @@
+.popup {
+
+   // .popup__arts
+   &__arts {}
+}
+
+.arts-popup {
+
+   // .arts-popup__order
+   &__order {}
+}
+
+.order-arts-popup {
+   display: flex;
+   width: 100vw;
+   justify-content: center;
+
+   // .order-arts-popup__body
+   &__body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 80vw;
+      padding: 70px;
+      background-color: $pinkColor;
+      border-radius: 10px;
+      border: 2px solid #fff;
+      outline: 8px solid $pinkColor;
+   }
+
+   // .order-arts-popup__title
+   &__title {
+      text-align: center;
+      margin-bottom: 40px;
+   }
+
+   // .order-arts-popup__list
+   &__list {
+      width: 50%;
+
+      & input[type="radio"] {
+         display: none;
+      }
+   }
+
+   // .order-arts-popup__item
+   &__item {
+      padding: 20px 20px 0px 20px;
+      position: relative;
+   }
+
+   // .order-arts-popup__item-title
+   &__item-title {
+      font-weight: 600;
+      font-size: 18px;
+      padding: 13px 20px;
+      border-radius: 7px;
+      background-color: #fff;
+   }
+
+   // .order-arts-popup__button
+   &__button {
+      position: absolute;
+      top: 34px;
+      right: 7%;
+      width: 14px;
+      height: 14px;
+      transition: all 0.3s ease-in-out 0s;
+
+      &::before {
+         content: '';
+         position: absolute;
+         top: 50%;
+         left: 0;
+         width: 14px;
+         height: 2px;
+         background-color: $orangeColor;
+         transition: all 0.3s ease-in-out 0s;
+      }
+
+      &::after {
+         content: '';
+         position: absolute;
+         top: 50%;
+         left: 0;
+         width: 14px;
+         height: 2px;
+         background-color: $orangeColor;
+         transform: rotate(-90deg);
+         transition: all 0.3s ease-in-out 0s;
+      }
+
+      &._active {
+         &::before {
+            transform: rotate(-180deg);
+         }
+
+         &::after {
+            transform: rotate(-180deg);
+         }
+      }
+   }
+
+   // .order-arts-popup__help
+   &__help {
+      display: flex;
+      align-items: center;
+      width: 90%;
+      padding: 20px;
+      height: 80px;
+      margin: 8px 0px 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      border: 2px solid $pinkColor;
+      outline: 6px solid #fff;
+
+
+      @media (min-width: $md2+px) {
+         position: absolute;
+         transform: translate(110%, -75%);
+
+         &::after {
+            content: '';
+            position: absolute;
+            left: -40px;
+            width: 10px;
+            height: 40px;
+            background-color: $pinkColor;
+         }
+      }
+   }
+
+   // Paint in css ====================================================
+   // .order-arts-popup__help-point
+   &__help-point {
+      display: none;
+
+      @media (min-width: $md2+px) {
+         position: absolute;
+         display: block;
+         top: 5px;
+         left: -40px;
+         width: 40px;
+         height: 40px;
+
+         background-color: #fff;
+         overflow: hidden;
+
+         &::after {
+            content: '';
+            position: absolute;
+            transform: translate(-7px, -50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: $pinkColor;
+            z-index: 3;
+         }
+
+
+         &::before {
+            content: '';
+            position: absolute;
+            transform: translate(-7px, 50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: $pinkColor;
+            z-index: 3;
+         }
+
+      }
+   }
+
+   // .order-arts-popup__help-point-point
+   &__help-point-point {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      width: 30px;
+      height: 30px;
+      transform: translate(0, -50%);
+      background-color: #fff;
+
+      &::after {
+         content: '';
+         position: absolute;
+         transform: translate(-9.5px, -23px);
+         width: 38px;
+         height: 38px;
+         border-radius: 50%;
+         background-color: #fff;
+         z-index: 2;
+      }
+
+
+      &::before {
+         content: '';
+         position: absolute;
+         transform: translate(-9.5px, 15px);
+         width: 38px;
+         height: 38px;
+         border-radius: 50%;
+         background-color: #fff;
+         z-index: 2;
+      }
+   }
+
+   // .order-arts-popup__help-point-point-point
+   &__help-point-point-point {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #fff;
+      transform: translate(0, -50%);
+      top: 50%;
+      right: 0;
+
+      &::after {
+         content: '';
+         position: absolute;
+         transform: translate(-50%, -72%);
+         width: 40px;
+         height: 40px;
+         border-radius: 50%;
+         background-color: $pinkColor;
+      }
+
+
+      &::before {
+         content: '';
+         position: absolute;
+         transform: translate(-50%, 22%);
+         width: 40px;
+         height: 40px;
+         border-radius: 50%;
+         background-color: $pinkColor;
+      }
+   }
+
+   // .order-arts-popup__sub-list
+   &__sub-list {
+      padding: 10px;
+   }
+
+   // .order-arts-popup__form
+   &__form {
+
+      // .order-arts-popup__form_photo
+      &_photo {}
+   }
+
+   // .order-arts-popup__sub-item
+   &__sub-item {
+      &:not(:last-child) {
+         padding-bottom: 20px;
+      }
+
+      &._send-photo {
+         width: 70%;
+      }
+   }
+
+   // .order-arts-popup__sub-radio
+   &__sub-radio {}
+
+   // .order-arts-popup__sub-main
+   &__sub-main {}
+
+   // .order-arts-popup__sub-sub-list
+   &__sub-sub-list {}
+
+   // .order-arts-popup__sub-sub-item
+   &__sub-sub-item {}
+
+   // .order-arts-popup__sub-sub-radio
+   &__sub-sub-radio {}
+
+   // .order-arts-popup__sub-input
+   &__sub-input {}
+
+   // .order-arts-popup__sub-input-title
+   &__sub-input-title {}
+
+   // .order-arts-popup__sub-text
+   &__sub-text {}
+
+   // .order-arts-popup__sub-help
+   &__sub-help {}
+
+   // .order-arts-popup__sub-help-text
+   &__sub-help-text {}
+
+   // .order-arts-popup__sub-item-title
+   &__sub-item-title {
+
+      // .order-arts-popup__sub-item-title_photo
+      &_photo {}
+   }
+
+   // .order-arts-popup__addMore
+   &__addMore {}
+}
