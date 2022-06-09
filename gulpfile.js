@@ -239,7 +239,7 @@ function clean(params) {
 let build = gulp.series(clean, gulp.parallel(js, favicon, css, html, json, images, fonts/*, swiper_js, swiper_css*/), fontsStyle);
 let watch = gulp.parallel(build, watchFiles, browserSync);
 
-gulp.task('default', watch)
+//gulp.task('default', watch)
 
 exports.favicon = favicon;
 exports.json = json;

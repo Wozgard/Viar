@@ -77,12 +77,113 @@
 //===================================================================================
 
 ._send-photo {
+   position: relative;
+
+   // ._send-photo__form
+   &__form {
+      display: flex;
+      padding: 10px;
+      border-radius: 10px;
+      background: #fff;
+      align-items: center;
+      border: 3px dashed $orangeColor;
+
+      &::before {
+         font-size: 18px;
+         color: $orangeColor;
+         padding: 2px 10px 0px;
+         z-index: 5;
+      }
+
+      & span {
+         display: block;
+         margin-top: 5px;
+         font-size: 11px;
+         @include adaptiv-value("font-size", 11, 9, 1);
+         color: rgba(30, 37, 51, 0.7);
+      }
+   }
+
+   // ._send-photo__title
+   &__title {
+      @include adaptiv-value("font-size", 14, 12, 1);
+   }
+
    & input {
       opacity: 0;
       cursor: pointer;
+      width: 100%;
+      position: absolute;
+      display: block;
+      top: 0;
+      left: 0;
+      border-radius: 10px;
+      height: 60px;
+      padding: 20px;
+      z-index: 2;
    }
 }
 
+
+
+._orederArtsPrice {}
+
 span.orange {
    color: $orangeColor;
+}
+
+._radioInput {
+   position: relative;
+   padding-left: 30px;
+   margin: 0px;
+   transition: all 0.3s ease 0s;
+   font-size: 16px;
+   color: rgba(30, 37, 51, 0.75);
+   cursor: pointer;
+   padding-bottom: 35px;
+
+   &::after {
+      position: absolute;
+      left: 0;
+      top: -2px;
+      content: "";
+      display: block;
+      @include adaptiv-value("width", 22, 18, 1);
+      @include adaptiv-value("height", 22, 18, 1);
+      border-radius: 50%;
+      background-color: #fff;
+   }
+
+   &::before {
+      opacity: 0;
+      visibility: hidden;
+      position: absolute;
+      @include adaptiv-value('left', 11.3, 9, 1);
+      @include adaptiv-value('top', 9, 7, 1);
+      content: "";
+      display: block;
+      width: 0px;
+      height: 0px;
+      border-radius: 50%;
+      background-color: $orangeColor;
+      transition: all 0.3s ease 0s;
+      z-index: 2;
+   }
+
+   &._active {
+      transition: all 0.3s ease 0s;
+      font-weight: 600;
+
+      &::before {
+         opacity: 1;
+         visibility: visible;
+         left: 4px;
+         top: 2px;
+         @include adaptiv-value("top", 2, 1, 1);
+         @include adaptiv-value("left", 4, 3, 1);
+         @include adaptiv-value("width", 14, 12, 1);
+         @include adaptiv-value("height", 14, 12, 1);
+         transition: all 0.3s ease 0s;
+      }
+   }
 }

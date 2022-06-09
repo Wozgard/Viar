@@ -186,6 +186,12 @@ h5 {
    @include adaptiv-value("font-size", 30, 20, 1);
 }
 
+//Key-frames ==========================================================================
+@import "key-frames";
+
+//Some classes ========================================================================
+@import "ui";
+
 //Header ==============================================================================
 @import "header";
 
@@ -195,8 +201,6 @@ h5 {
 //Popups===============================================================================
 @import "popup";
 
-//Some classes ========================================================================
-@import "ui";
 
 //Main ================================================================================
 .page {
@@ -272,14 +276,9 @@ h5 {
       color: $orangeColor;
       border: 2px solid $orangeColor;
       margin: 80px 50%;
-      box-shadow: 0px 1.5px 1.5px #aa512e;
       transform: translate(-50%, 0);
       transition: color 0.9s ease 0s;
       transition: background-color 1s ease 0s;
-
-      &:active {
-         box-shadow: none;
-      }
 
       @media (any-hover: hover) {
          box-shadow: none;
@@ -293,6 +292,15 @@ h5 {
          &:active {
             box-shadow: none;
          }
+      }
+
+      @media (any-hover:none) {
+         box-shadow: 0px 1px 1px #aa512e;
+
+         &:active {
+            box-shadow: none;
+         }
+
       }
 
       &._hold {
@@ -349,7 +357,7 @@ h5 {
    // .item-arts__image
    &__image {
       flex: 0 1 100%;
-      height: 100%;
+      height: inherit;
       cursor: auto;
       display: flex;
       align-items: center;
@@ -380,7 +388,7 @@ h5 {
       &._vertical {
          img {
             left: 0;
-            height: 100%;
+            height: inherit;
             width: auto;
          }
 
@@ -567,9 +575,8 @@ h5 {
       left: 10px;
       @include adaptiv-value("font-size", 14, 12, 1);
 
-      &_photo {
-         @include adaptiv-value("font-size", 14, 12, 1);
-      }
+      // .forms-contact-us__title_photo
+      &_photo {}
    }
 
    // .forms-contact-us__form
@@ -593,23 +600,7 @@ h5 {
 
       // .forms-contact-us__form_photo
       &_photo {
-         padding: 10px;
-         border-radius: 10px;
-         background: #fff;
          flex-direction: row;
-         border: 3px dashed $orangeColor;
-
-         &.forms-contact-us__title {
-            margin-top: -5px;
-         }
-
-         & span {
-            display: block;
-            margin-top: 5px;
-            font-size: 11px;
-            @include adaptiv-value("font-size", 11, 9, 1);
-            color: rgba(30, 37, 51, 0.7);
-         }
       }
 
       &._focus .forms-contact-us__icon {
@@ -920,12 +911,9 @@ h5 {
    // .forms-sale__list
    &__list {
       display: flex;
-      //justify-content: space-between;
       flex-direction: column;
       flex-wrap: wrap;
 
-      //height: 200px;
-      //@include adaptiv-value("max-height", 210, 440, 1);
       @media (max-width: $md2+px) {
          //transform: translate(-25%);
       }
@@ -937,68 +925,10 @@ h5 {
 
    // .forms-sale__item
    &__item {
-      //height: 51px;
-      position: relative;
-      padding-left: 30px;
-      margin-right: -10px;
-      transition: all 0.3s ease 0s;
-      width: 180px;
-      font-size: 16px;
-      color: rgba(30, 37, 51, 0.75);
-      cursor: pointer;
-      padding-bottom: 35px;
 
+      //height: 51px;
       &:nth-child(-n + 4) {
          margin-right: 120px;
-      }
-
-      &::after {
-         /* 
-			opacity: 0;
-			visibility: hidden;
-			transition: transform 0.4s ease-out 0s; */
-         position: absolute;
-         left: 0;
-         top: -2px;
-         content: "";
-         display: block;
-         @include adaptiv-value("width", 22, 18, 1);
-         @include adaptiv-value("height", 22, 18, 1);
-         border-radius: 50%;
-         background-color: #fff;
-      }
-
-      &::before {
-         opacity: 0;
-         visibility: hidden;
-         position: absolute;
-         @include adaptiv-value('left', 11.3, 9, 1);
-         @include adaptiv-value('top', 9, 7, 1);
-         content: "";
-         display: block;
-         width: 0px;
-         height: 0px;
-         border-radius: 50%;
-         background-color: $orangeColor;
-         transition: all 0.3s ease 0s;
-         z-index: 2;
-      }
-
-      &._active {
-         transition: all 0.3s ease 0s;
-         font-weight: 600;
-
-         &::before {
-            opacity: 1;
-            visibility: visible;
-            left: 4px;
-            top: 2px;
-            @include adaptiv-value("top", 2, 1, 1);
-            @include adaptiv-value("left", 4, 3, 1);
-            @include adaptiv-value("width", 14, 12, 1);
-            @include adaptiv-value("height", 14, 12, 1);
-            transition: all 0.3s ease 0s;
-         }
       }
 
       @media (max-width: $md4+px) {

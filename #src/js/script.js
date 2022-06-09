@@ -15,7 +15,7 @@ window.onload = function () {
    // Чтобы решить проблему 100vh на мобильных устройствах приходится использовать --app-height
    const appHeight = () => {
       const doc = document.documentElement
-      doc.style.setProperty('--app-height', '${window.innerHeight}px')
+      doc.style.setProperty('--app-height', `${window.innerHeight}px`)
    }
    window.addEventListener('resize', appHeight)
    appHeight()
@@ -99,37 +99,11 @@ window.onload = function () {
          document.querySelector('.lang-menu__visible').classList.remove('_hold');
       }
 
-      /* if (targetElement.classList.contains('menu__arrow') && document.querySelectorAll('.menu__button._active').length >= 0) {
-         const menu = document.querySelector('.menu');
-         const countActive = document.querySelectorAll('.menu__button._active').length;
-         const countButtons = document.querySelectorAll('.menu__button').length;
-         if (countButtons > countActive) {
-            const differenceCount = countButtons - countActive;
-            //const hideActive = document.querySelector('.menu').getAttribute('class').replace(/[^0-9]/g, '');
-            const countHideActive = countActive + 1;
-            menu.classList.remove(`_scroll-plus${countHideActive}`);
-         }
-         if (countActive != 1) {
-            menu.classList.add(`_scroll-plus${countActive}`);
-            const scrollPlus = document.querySelector(`._scroll-plus${countActive}`);
-            const countActivePecent = 100 + 15 * countActive;
-            menu.style.cssText =
-               `
-            height: ${countActivePecent}%;
-            `;
-         } else {
-            menu.style.cssText =
-               `
-            height: 100%;
-            `;
-         }
-      } */
-
-      //Sale==================================================
-      if (targetElement.closest('.forms-sale__item')) {
+      //RadioChecking===============================================
+      if (targetElement.closest('._radioInput')) {
          const saleRadioInput = targetElement.querySelector('input');
-         const currentStep = document.querySelector('.forms-sale__qustion._active');
-         const saleRadio = currentStep.querySelectorAll('li.forms-sale__item input[type = radio]');
+         const currentStep = targetElement.closest('._radioInputForm');
+         const saleRadio = currentStep.querySelectorAll('._radioInput input[type = radio]');
          saleRadio.forEach(item => {
             if (item.hasAttribute('checked')) {
                item.removeAttribute('checked');
@@ -138,9 +112,10 @@ window.onload = function () {
          });
 
          saleRadioInput.setAttribute('checked', '');
-         saleRadioChecking()
+         radioChecking()
       }
 
+      //Sale==================================================
       if (targetElement.closest('.forms-sale__button') && !targetElement.closest('.forms-sale__button_prev') && !targetElement.closest('.forms-sale__button_send')) {
          const currentStepCount = document.querySelector('[data-step]').getAttribute('data-step')
          document.querySelector('[data-step]').setAttribute('data-step', Number(currentStepCount) + 1)
@@ -212,6 +187,20 @@ window.onload = function () {
       }, 300);
       menuBurgerHoverHelper()
    }
+
+   function radioChecking() {
+      //Позволяет отмечать нужные чекбоксы
+      const saleRadio = document.querySelectorAll('._radioInput input[type = radio]');
+      saleRadio.forEach(item => {
+         if (item.hasAttribute('checked')) {
+            item.parentElement.classList.add('_active');
+            return item.parentElement
+         }
+         if (!item.hasAttribute('checked') && item.parentElement.classList.contains('_active')) {
+            item.parentElement.classList.remove('_active');
+         }
+      });
+   }
    //Menu==================================================================================================================
    function menuListHoverHelper() {
       const menuItem = document.querySelectorAll('.menu__item');
@@ -253,34 +242,13 @@ window.onload = function () {
       }
    }
    const menuOpenClose = menuOpenCloseClosing();
-   /* function mouseOverLangItem() {
-      const menuLang = document.querySelector('.menu__lang');
-      menuLang.addEventListener('mouseover', e => {
-         const targetElement = e.target;
-         if (targetElement.closest('.lang-menu__option') && !targetElement.hasAttribute('disabled')) {
-            targetElement.style.cssText = `
-            background-color: #fa7846;
-            color:#fff;
-            `;
-         }
-      });
-      menuLang.addEventListener('mouseout', e => {
-         const targetElement = e.target;
-         if (targetElement.closest('.lang-menu__option') && !targetElement.hasAttribute('disabled')) {
-            targetElement.style.cssText = `
-            background-color: #fff;
-            color: #1e2533;
-            `;
-         }
-      });
-   } */
 
-   function menuLangHelper() {
+   /* function menuLangHelper() {
       const menuLangVisible = document.querySelector('.menu__lang-visible');
       const menuOptions = document.querySelector('.menu__option')
 
       console.log(menuOptions.value)
-   } //menuLangHelper()
+   } menuLangHelper() */
 
    function menuBurgerHoverHelper() {
       const menuBody = document.querySelector('.menu__body');
@@ -292,13 +260,12 @@ window.onload = function () {
       menuHold.insertBefore(menuLang, menuHold.children[1])
    }
    //Contact Us==================================================================================================================
-   function contacFormFocus() {
-      //Вешает на формы из раздела Contact Us события фокуса, блюра и изменения для изменеия плейсходера форм, изменения состояния иконки внутри формы
-      const contacForm = document.forms.contactUsForm;
-      const contacFormInput = contacForm.contactUsInput;
-      const contacFormPhoto = contacForm.contactUsPhoto;
+   function formFocus() {
+      //Вешает на input'ы события фокуса, блюра и изменения для изменеия плейсходера форм, изменения состояния иконки внутри формы
+      const inputs = document.querySelectorAll('input._needFocus');
+      const formPhotos = document.querySelectorAll('input[name="photoForm"]');
 
-      contacFormInput.forEach(item => {
+      inputs.forEach(item => {
          const itemPlaceholder = item.getAttribute('placeholder');
          item.addEventListener("focus", function (e) {
             item.setAttribute('placeholder', '');
@@ -312,31 +279,40 @@ window.onload = function () {
          });
       });
       //Этот код позволяет отображать имя выбранного файла и сокращает его, если оно слишком велико
-      contacFormPhoto.addEventListener("change", () => {
-         if (contacFormPhoto.value.length > 35) {
-            let firstStr = '';
-            let lastStr = '';
-            for (var i = 0; i < contacFormPhoto.value.length; i++) {
-               let nuberNow = String(contacFormPhoto.value[i]);
+      formPhotos.forEach(element => {
+         element.addEventListener("change", () => {
+            let photoName = '';
+            for (var i = 0; i < element.value.length; i++) {
+               let nuberNow = String(element.value[i]);
 
                if (nuberNow === "\\") {
-                  firstStr = String(contacFormPhoto.value[i + 1]) + String(contacFormPhoto.value[i + 2]) + String(contacFormPhoto.value[i + 3]);
+                  let photoPath = String(element.value).split(nuberNow);
+                  photoName = photoPath[photoPath.length - 1]
                }
-               if (nuberNow === "\.") {
-                  let fileExtension = String(contacFormPhoto.value).split(nuberNow);
-                  lastStr = String(contacFormPhoto.value[i - 2]) + String(contacFormPhoto.value[i - 1]) + nuberNow + fileExtension[1];
-               }
-
             }
-            let startPath = String(contacFormPhoto.value).split(firstStr);
-            let finalStr = startPath[0] + firstStr + '...' + lastStr;
-            contacForm.querySelector('.forms-contact-us__title_photo').innerHTML = `<div class="forms-contact-us__title_photo">Загружено фото <span>${finalStr}</span></div>`;
 
-         } else {
-            contacForm.querySelector('.forms-contact-us__title_photo').innerHTML = `<div class="forms-contact-us__title_photo">Загружено фото <span>${contacFormPhoto.value}</span></div>`;
-         }
-      });
-   } contacFormFocus();
+            if (photoName.length > 25) {
+               let firstStr = String(photoName[1]) + String(photoName[2]) + String(photoName[3]) + String(photoName[4]) + String(photoName[5]);
+               let lastStr = '';
+               for (var i = 0; i < photoName.length; i++) {
+                  let nuberNow = String(photoName[i]);
+
+                  if (nuberNow === "\.") {
+                     let fileExtension = String(photoName).split(nuberNow);
+                     lastStr = String(photoName[i - 4]) + String(photoName[i - 3]) + String(photoName[i - 2]) + String(photoName[i - 1]) + nuberNow + fileExtension[1];
+                  }
+
+               }
+               //let startPath = String(photoName).split(firstStr);
+               let finalStr = /* startPath[0] + */ firstStr + '...' + lastStr;
+               document.querySelector('._send-photo__title').innerHTML = `<div class="forms-contact-us__title_photo">Загружено фото <span>${finalStr}</span></div>`;
+
+            } else {
+               document.querySelector('._send-photo__title').innerHTML = `<div class="forms-contact-us__title_photo">Загружено фото <span>${photoName}</span></div>`;
+            }
+         });
+      })
+   } formFocus();
 
    async function contacFormCreateRequest() {
       const contactForm = document.forms.contactUsForm;
@@ -445,21 +421,6 @@ window.onload = function () {
       }
    }
    saleLoadFunc()
-
-
-   function saleRadioChecking() {
-      //Позволяет отмечать нужные чекбоксы
-      const saleRadio = document.querySelectorAll('li.forms-sale__item input[type = radio]');
-      saleRadio.forEach(item => {
-         if (item.hasAttribute('checked')) {
-            item.parentElement.classList.add('_active');
-            return item.parentElement
-         }
-         if (!item.hasAttribute('checked') && item.parentElement.classList.contains('_active')) {
-            item.parentElement.classList.remove('_active');
-         }
-      });
-   }
 
    function saleQuestionHelper() {
       const itemListWidth = 500;
@@ -578,7 +539,7 @@ window.onload = function () {
                checked = 'checked'
             }
             questTemplate += `
-            <li class="forms-sale__item"><input type="radio" ${checked} name="radioSale" value="${questConter}" class="forms-sale__radio">${el}</li>
+            <li class="forms-sale__item _radioInput"><input type="radio" ${checked} name="radioSale" value="${questConter}" class="forms-sale__radio">${el}</li>
             `;
             questConter++;
          });
@@ -591,7 +552,7 @@ window.onload = function () {
          }
 
          let template = `
-         <div data-stepId="${stepId}" class="forms-sale__qustion">
+         <div data-stepId="${stepId}" class="forms-sale__qustion _radioInputForm">
             <div class="forms-sale__title">${questTitle}</div>
             <form action="#" name="saleForm" class="forms-sale__form">
                <ul class="forms-sale__list">
@@ -608,7 +569,7 @@ window.onload = function () {
          body.insertAdjacentHTML('beforeend', template);
       });
       currentStep()
-      saleRadioChecking()
+      radioChecking()
       saleQuestionHelper()
    }
 }
