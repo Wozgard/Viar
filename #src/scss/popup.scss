@@ -10,12 +10,12 @@
    &__order {}
 }
 
-.order-arts-popup {
+.order-popup {
    display: flex;
    width: 100vw;
    justify-content: center;
 
-   // .order-arts-popup__body
+   // .order-popup__body
    &__body {
       display: flex;
       flex-direction: column;
@@ -28,13 +28,13 @@
       outline: 8px solid $pinkColor;
    }
 
-   // .order-arts-popup__title
+   // .order-popup__title
    &__title {
       text-align: center;
       margin-bottom: 40px;
    }
 
-   // .order-arts-popup__list
+   // .order-popup__list
    &__list {
       width: 50%;
 
@@ -43,13 +43,13 @@
       }
    }
 
-   // .order-arts-popup__item
+   // .order-popup__item
    &__item {
       padding: 20px 20px 0px 20px;
       position: relative;
    }
 
-   // .order-arts-popup__item-title
+   // .order-popup__item-title
    &__item-title {
       font-weight: 600;
       font-size: 18px;
@@ -58,7 +58,7 @@
       background-color: #fff;
    }
 
-   // .order-arts-popup__button
+   // .order-popup__button
    &__button {
       position: absolute;
       top: 34px;
@@ -101,9 +101,23 @@
       }
    }
 
-   // .order-arts-popup__help
+   // .order-popup__sub-list
+   &__sub-list {
+      padding: 20px 10px 10px 10px;
+
+      &._show {
+         .order-popup__help {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(110%, -95%);
+         }
+      }
+   }
+
+   // .order-popup__help
    &__help {
       display: flex;
+      cursor: default;
       align-items: center;
       width: 90%;
       padding: 20px;
@@ -113,11 +127,14 @@
       border-radius: 5px;
       border: 2px solid $pinkColor;
       outline: 6px solid #fff;
+      transition: all 0.3s ease-in-out 0s;
 
 
       @media (min-width: $md2+px) {
          position: absolute;
-         transform: translate(110%, -75%);
+         opacity: 0;
+         visibility: hidden;
+         transform: translate(0%, -95%);
 
          &::after {
             content: '';
@@ -131,7 +148,7 @@
    }
 
    // Paint in css ====================================================
-   // .order-arts-popup__help-point
+   // .order-popup__help-point
    &__help-point {
       display: none;
 
@@ -172,7 +189,7 @@
       }
    }
 
-   // .order-arts-popup__help-point-point
+   // .order-popup__help-point-point
    &__help-point-point {
       position: absolute;
       right: 0;
@@ -206,7 +223,7 @@
       }
    }
 
-   // .order-arts-popup__help-point-point-point
+   // .order-popup__help-point-point-point
    &__help-point-point-point {
       position: absolute;
       width: 20px;
@@ -238,22 +255,18 @@
       }
    }
 
-   // .order-arts-popup__sub-list
-   &__sub-list {
-      padding: 10px;
-   }
 
-   // .order-arts-popup__form
+   // .order-popup__form
    &__form {
 
-      // .order-arts-popup__form_photo
+      // .order-popup__form_photo
       &_photo {}
    }
 
-   // .order-arts-popup__sub-item
+   // .order-popup__sub-item
    &__sub-item {
       &:not(:last-child) {
-         padding-bottom: 20px;
+         padding-bottom: 30px;
       }
 
       &._send-photo {
@@ -261,43 +274,129 @@
       }
    }
 
-   // .order-arts-popup__sub-radio
+   // .order-popup__sub-radio
    &__sub-radio {}
 
-   // .order-arts-popup__sub-main
+   // .order-popup__sub-main
    &__sub-main {}
 
-   // .order-arts-popup__sub-sub-list
-   &__sub-sub-list {}
+   // .order-popup__sub-group
+   &__sub-group {
+      &._show {
+         .order-popup__sub-sub-list {
+            transform: translate(60%, 0);
+            transition: all 0.3s ease-in-out 0s;
+         }
 
-   // .order-arts-popup__sub-sub-item
-   &__sub-sub-item {}
+         .order-popup__sub-sub-item {
+            &:nth-child(1) {
+               transform: translate(0, -600%);
+            }
 
-   // .order-arts-popup__sub-sub-radio
+            &:nth-child(2) {
+               transform: translate(0, -430%);
+            }
+
+            &:nth-child(3) {
+               transform: translate(0, -260%);
+            }
+
+            &:nth-child(4) {
+               transform: translate(0, -90%);
+            }
+
+            &:nth-child(5) {
+               transform: translate(0, 80%);
+            }
+
+            &:nth-child(6) {
+               transform: translate(0, 250%);
+            }
+
+            &:nth-child(7) {
+               transform: translate(0, 420%);
+            }
+
+
+            transition: all 0.3s linear 0.3s;
+         }
+      }
+   }
+
+   // .order-popup__sub-sub-list
+   &__sub-sub-list {
+      transform: translate(0, 0);
+      transition: all 0.2s ease-in-out 0.3s;
+   }
+
+   // .order-popup__sub-sub-item
+   &__sub-sub-item {
+      transition: all 0.2s linear 0s;
+
+      &:not(:last-child) {
+         padding-bottom: 0px;
+      }
+
+      &:nth-child(1) {
+         transform: translate(0, 0);
+      }
+
+      &:nth-child(2) {
+         transform: translate(0, 0);
+      }
+
+      &:nth-child(3) {
+         transform: translate(0, 0);
+      }
+
+      &:nth-child(4) {
+         transform: translate(0, 0);
+      }
+
+      &:nth-child(5) {
+         transform: translate(0, 0);
+      }
+
+      &:nth-child(6) {
+         transform: translate(0, 0);
+      }
+
+      &:nth-child(7) {
+         transform: translate(0, 0);
+      }
+   }
+
+   // .order-popup__sub-sub-radio
    &__sub-sub-radio {}
 
-   // .order-arts-popup__sub-input
+   // .order-popup__sub-input
    &__sub-input {}
 
-   // .order-arts-popup__sub-input-title
-   &__sub-input-title {}
+   // .order-popup__sub-input-title
+   &__sub-input-title {
+      opacity: 0.8;
+      padding: 0px 0px 7px 3px;
+   }
 
-   // .order-arts-popup__sub-text
-   &__sub-text {}
+   // .order-popup__sub-text
+   &__sub-text {
+      padding: 20px;
+      border-radius: 5px;
+   }
 
-   // .order-arts-popup__sub-help
+   // .order-popup__sub-help
    &__sub-help {}
 
-   // .order-arts-popup__sub-help-text
+   // .order-popup__sub-help-text
    &__sub-help-text {}
 
-   // .order-arts-popup__sub-item-title
+   // .order-popup__sub-item-title
    &__sub-item-title {
 
-      // .order-arts-popup__sub-item-title_photo
+      // .order-popup__sub-item-title_photo
       &_photo {}
    }
 
-   // .order-arts-popup__addMore
+   // .order-popup__addMore
    &__addMore {}
 }

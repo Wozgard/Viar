@@ -177,6 +177,16 @@ window.onload = function () {
          getArts(targetElement);
          e.preventDefault();
       }
+
+      //Popup========================================================================================================================
+      if (targetElement.closest('.order-popup__button')) {
+         helpListOrederPopupPadding(targetElement)
+      }
+      if (targetElement.closest('.order-popup__sub-item')) {
+         if (targetElement.closest('[data-subSubList]')) {
+            helpOrederPopupSubSubListSlide()
+         }
+      }
    }
 
    //Adaptive=============================================================================================
@@ -572,4 +582,31 @@ window.onload = function () {
       radioChecking()
       saleQuestionHelper()
    }
+
+   //Popup===============================================================================================
+   function helpListOrederPopupPadding(button) {
+      button.closest('._open') ? button.parentElement.classList.remove('_open') : null;
+      button.closest('._active') ? button.parentElement.classList.add('_open') : null;
+   }
+
+   function helpOrederPopupSubSubListSlideFather() {
+      const group = document.querySelector('.order-popup__sub-group');
+      let swicher = true;
+
+      _slideUp(group)
+
+      return function () {
+         const opener = document.querySelector('input[value="group"]');
+
+         if (opener.hasAttribute('checked') && swicher) {
+            _slideDown(group);
+            swicher = false;
+         } else if (!opener.hasAttribute('checked')) {
+            _slideUp(group, 700);
+            swicher = true;
+         }
+
+      }
+   }
+   const helpOrederPopupSubSubListSlide = helpOrederPopupSubSubListSlideFather()
 }

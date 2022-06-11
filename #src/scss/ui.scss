@@ -134,13 +134,16 @@ span.orange {
 
 ._radioInput {
    position: relative;
-   padding-left: 30px;
    margin: 0px;
    transition: all 0.3s ease 0s;
    font-size: 16px;
    color: rgba(30, 37, 51, 0.75);
    cursor: pointer;
-   padding-bottom: 35px;
+   padding-left: 30px;
+
+   &:not(:last-child) {
+      padding-bottom: 35px;
+   }
 
    &::after {
       position: absolute;
