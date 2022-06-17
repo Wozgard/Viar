@@ -119,6 +119,9 @@ if (spollersArray.length > 0) {
 //Slide Toggle
 let _slideUp = (target, duration = 500) => {
    if (!target.classList.contains('_slide')) {
+      //for animation
+      target.classList.remove('_show');
+
       target.classList.add('_slide');
       target.style.transitionProperty = 'height, margin, padding';
       target.style.transitionDuration = duration + 'ms';
@@ -142,12 +145,9 @@ let _slideUp = (target, duration = 500) => {
          target.style.removeProperty('transition-property');
          target.classList.remove('_slide');
       }, duration);
-
-      //for animation
-      target.classList.remove('_show');
    }
 }
-let _slideDown = (target, duration = 500) => {
+let _slideDown = (target, duration = 500, durationToShow = 0) => {
    if (!target.classList.contains('_slide')) {
       target.classList.add('_slide');
       if (target.hidden) {
@@ -179,7 +179,7 @@ let _slideDown = (target, duration = 500) => {
       //for animation
       setTimeout(() => {
          target.classList.add('_show');
-      }, 0);
+      }, durationToShow);
    }
 }
 let _slideToggle = (target, duration = 500) => {

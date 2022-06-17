@@ -599,7 +599,7 @@ window.onload = function () {
          const opener = document.querySelector('input[value="group"]');
 
          if (opener.hasAttribute('checked') && swicher) {
-            _slideDown(group);
+            _slideDown(group, 500, 550);
             swicher = false;
          } else if (!opener.hasAttribute('checked')) {
             _slideUp(group, 700);

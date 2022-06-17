@@ -129,6 +129,77 @@
       outline: 6px solid #fff;
       transition: all 0.3s ease-in-out 0s;
 
+      &::before {
+         content: '';
+         display: block;
+         margin-right: 10px;
+      }
+
+      &#helpPop_1 {
+         &::before {
+            //background: url('../img/popup/');
+         }
+      }
+
+      &#helpPop_2 {
+         &::before {
+            //background: url('../img/popup/');
+         }
+      }
+
+      &#helpPop_3 {
+         &::before {
+            //background: url('../img/popup/');
+         }
+      }
+
+      &#helpPop_4 {
+         &::before {
+            width: 47px;
+            height: 34px;
+            background: url('../img/popup/Group.svg') 0 0/100% 100% no-repeat;
+         }
+      }
+
+      &#helpPop_5 {
+         &::before {
+            width: 86px;
+            height: 52px;
+            background: url('../img/popup/framesрр.svg') 0 0/100% 100% no-repeat;
+         }
+      }
+
+      &#helpPop_6 {
+         &::before {
+            width: 54px;
+            height: 60px;
+            background: url('../img/popup/gift.svg') 0 0/100% 100% no-repeat;
+         }
+      }
+
+      &#helpPop_7 {
+         &::before {
+            width: 95px;
+            height: 74px;
+            background: url('../img/popup/framesрр\(rot\).svg') 0 0/100% 100% no-repeat;
+         }
+      }
+
+      &#helpPop_8 {
+         &::before {
+            width: 70px;
+            height: 39px;
+            background: url('../img/popup/present.svg') 0 0/100% 100% no-repeat;
+         }
+      }
+
+      &#helpPop_9 {
+         &::before {
+            width: 60px;
+            height: 38px;
+            background: url('../img/popup/write.svg') 0 0/100% 100% no-repeat;
+         }
+      }
 
       @media (min-width: $md2+px) {
          position: absolute;
@@ -265,13 +336,24 @@
 
    // .order-popup__sub-item
    &__sub-item {
+      display: flex;
+      align-items: center;
+
       &:not(:last-child) {
          padding-bottom: 30px;
       }
 
-      &._send-photo {
-         width: 70%;
+      &_comm {
+         &._send-photo {
+            width: 70%;
+         }
       }
+   }
+
+   // .order-popup__sub-item-text
+   &__sub-item-text {
+      display: inline-block;
+      max-width: 350px;
    }
 
    // .order-popup__sub-radio
@@ -372,31 +454,84 @@
    // .order-popup__sub-input
    &__sub-input {}
 
-   // .order-popup__sub-input-title
-   &__sub-input-title {
-      opacity: 0.8;
-      padding: 0px 0px 7px 3px;
-   }
-
    // .order-popup__sub-text
    &__sub-text {
       padding: 20px;
       border-radius: 5px;
    }
 
-   // .order-popup__sub-help
-   &__sub-help {}
+   // .order-popup__info
+   &__info {
+      display: inline-block;
+      margin-left: 10px;
+      width: 17px;
+      height: 16px;
+      background: url('../img/popup/info.svg') 0 0 / 100% 100% no-repeat;
+   }
 
-   // .order-popup__sub-help-text
-   &__sub-help-text {}
+   // .order-popup__info-text
+   &__info-text {}
 
    // .order-popup__sub-item-title
    &__sub-item-title {
+      opacity: 0.8;
+      padding: 0px 0px 10px 3px;
 
       // .order-popup__sub-item-title_photo
       &_photo {}
    }
 
+   // .order-popup__comment
+   &__comment {
+      border-radius: 5px;
+      padding: 20px;
+      min-height: 60px;
+      height: 76px;
+      max-height: 100px;
+      min-width: 95%;
+      max-width: 95%;
+   }
+
    // .order-popup__addMore
-   &__addMore {}
+   &__addMore {
+      display: flex;
+      width: auto;
+      color: $orangeColor;
+      align-items: center;
+      margin: 10px 0px 0px 5px;
+      cursor: pointer;
+
+      &::after {
+         content: '';
+         display: block;
+         position: absolute;
+         left: 60px;
+         bottom: 7px;
+         opacity: 0;
+         visibility: hidden;
+         width: 130px;
+         height: 2px;
+         background-color: $orangeColor;
+         transition: all 0.3s ease-in-out 0s;
+      }
+
+      &::before {
+         content: '';
+         display: block;
+         margin-right: 10px;
+         width: 16px;
+         height: 17px;
+         transition: all 0.3s ease-in-out 0s;
+         background: url('../img/popup/plus.svg') 0 0/100% 100% no-repeat;
+      }
+
+      @media (any-hover:hover) {
+         &:hover {
+            &::after {
+               opacity: 1;
+               visibility: visible;
+            }
+         }
+      }
+   }
 }
